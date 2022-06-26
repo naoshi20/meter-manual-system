@@ -14,6 +14,8 @@
 4. python manage.py runserver [port]
 
 ## 初期設定
+- Herokuでアプリ作成
+- Githubアカウントと連携&CI/CD設定
 - .git ファイルを削除
 - git init
 - githubでリモートリポジトリ作成
@@ -53,7 +55,12 @@
 10. git pull #最新状態を取り込める
 
 ## heroku posgres連携
-heroku run python manage.py createsuperuser --app {{appname}}
+- heroku run python manage.py createsuperuser --app {{appname}}
+- settings.pyに以下を追加すると自動でHerokuDBを読み込んでくれる
+′′′
+import django_heroku
+django_heroku.settings(locals())
+′′′
 
 ## postgres operations
 - heroku addons
