@@ -1,8 +1,10 @@
 asgiref
 django
-django-heroku
-django-environ
+django-bootstrap4
 dj-database-url
+django-environ
+django-heroku
+django-widget-tweaks 
 gunicorn
 psycopg2
 pytz

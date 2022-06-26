@@ -43,11 +43,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-    '{{yourAppName}}.apps.CheckConfig',
-    #'accounts.apps.AccountsConfig',
+    'appName.apps.appNameConfig',
     'bootstrap4',
     'widget_tweaks',
 ]
+#'accounts.apps.AccountsConfig',
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -142,7 +142,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 import django_heroku
 django_heroku.settings(locals())
 
-#AUTH_USER_MODEL = 'check.User'
+#AUTH_USER_MODEL = 'appName.User'
 
 LOGIN_REDIRECT_URL = ''
 LOGIN_URL = ''

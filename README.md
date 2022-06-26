@@ -1,4 +1,4 @@
-# Mental Check App
+# Django Heroku Template
  
 ## Django Heroku Deploy 参考
 - [本堂俊輔さんのYoutube](https://www.youtube.com/watch?v=vV_eUbaEH2A)
@@ -7,18 +7,27 @@
 - DEBUG=False条件でも動くか確認しながら開発する
 - 使用するstaticファイルは最小限にする
 
+## 実行
+1. python manage.py makemigrations
+2. python manage.py migrate
+3. python manage.py collectstatic
+4. python manage.py runserver [port]
+
 ## 初期設定
-1. git add .
-2. git commit -m 'init'
-3. git remote set-url origin https://github.com/naoshi20/django-heroku-app-1.git
-4. git push origin master
-5. python3 -m venv ./venv --prompt django-app
-6. source venv/bin/activate
-7. python -m pip install -r requirements.txt
-8. /Users/naoshi/Desktop/mentalcheck2/venv/bin/python -m pip install --upgrade pip
-9. python manage.py collectstatic
-10. python manage.py runserver 8001
-11. python manage.py migrate
+- .git ファイルを削除
+- git init
+- githubでリモートリポジトリ作成
+- git remote add origin {{remote url}}
+- git add .
+- git commit -m 'init'
+- git push origin master
+- python3 -m venv ./venv --prompt {{env-name}}
+- source venv/bin/activate
+- python -m pip install -r requirements.txt
+- /Users/naoshi/Desktop/{{app-name}}/venv/bin/python -m pip install --upgrade pip
+- python manage.py collectstatic
+- python manage.py migrate
+- python manage.py runserver 8001
 
 ## staticファイルの追加方法
 1. staticフォルダ以下に該当ファイルを設置
@@ -49,7 +58,7 @@ heroku run python manage.py createsuperuser --app {{appname}}
 ## postgres operations
 - heroku addons
 - heroku pg
-- heroku run python manage.py migrate check　(きちんと指定する)
+- heroku run python manage.py migrate appName　(きちんと指定する)
 - heroku run python manage.py createsuperuser
 - heroku psql
 - \dt; (show all tabeles)
