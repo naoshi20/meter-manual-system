@@ -1,25 +1,19 @@
 # Django Heroku Template
  
-## Django Heroku Deploy 参考
+## refference
 - [本堂俊輔さんのYoutube](https://www.youtube.com/watch?v=vV_eUbaEH2A)
 
-## 開発時の注意点
+## cautions
 - DEBUG=False条件でも動くか確認しながら開発する
 - 使用するstaticファイルは最小限にする
 
-## Environmental Settings
+## environment
 - OS: Mac Monterey 12.4
 - Python: 3.7.9
 - Virtual Env: venv
 - Production: Heroku
 
-## 実行
-1. python manage.py makemigrations
-2. python manage.py migrate
-3. python manage.py collectstatic
-4. python manage.py runserver [port]
-
-## 初期設定
+## initial settings
 - Herokuでアプリ作成
 - Githubアカウントと連携&CI/CD設定
 - .git ファイルを削除
@@ -37,30 +31,36 @@
 - python manage.py migrate
 - python manage.py runserver 8001
 
-## staticファイルの追加方法
+## execution
+1. python manage.py makemigrations
+2. python manage.py migrate
+3. python manage.py collectstatic
+4. python manage.py runserver [port]
+
+## add static file
 1. staticフォルダ以下に該当ファイルを設置
 2. python manage.py collectstatic
 3. cmd + Cでrunserverを停止&再起動
-4. リロード
+4. reload browser
 
 ## static files import error
 - STATIC_ROOT: 本番環境でのみ利用される。nginxで静的ファイルを配信したい場合など。manage.py collectstaticによって静的ファイルがここにコピーされる。
 - STATICFILES_DIRS: ローカルで使用。cssが存在する全てのディレクトリを指定する。{% static %}タグを使った際に見に行く先のフォルダ.collectstaticを実行した際に見に行くフォルダ
 - STATIC_URL: https://static.example.org/filename.extにおける、https://static.example.org 部分のURL.
 
-## gitの運用
+## git operation
 1. git clone
 2. git branch dev
 3. git checkout dev
-4. 開発
+4. development
 5. git add, commit
 6. git push origin dev
 7. プルリク作成
 8. マージ
-9. git checkout master #masterを最新化したい
-10. git pull #最新状態を取り込める
+9. git checkout master
+10. git pull
 
-## heroku posgres連携
+## for heroku posgres integration
 - heroku run python manage.py createsuperuser --app {{appname}}
 - settings.pyに以下を追加すると自動でHerokuDBを読み込んでくれる
 ′′′
@@ -78,14 +78,14 @@ django_heroku.settings(locals())
 - SELECT username, email FROM auth_user;
 - \q (quit)
 
-## maintenance
+## maintenance mode
 heroku maintenance:on
 
 ## database migration
-- python manage.py dumpdata > dump.json (出力の全てがdump.jsonに記載されてしまうため注意。printなどで出力したものもファイルに記載されてしまう。その部分は削除してからロードする。) 
+- python manage.py dumpdata > dump.json
 - pg_dumpall > dumpfile
 
-## DEBUG=True時の500severerrorの対応
+## solution for 500 sever error
 - htmlファイルが存在しないstaticファイルを参照しようとしている可能性がある。0からhtmlを構築した方がよい。
 
 ## Procfile for Auto Migration
