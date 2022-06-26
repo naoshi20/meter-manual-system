@@ -7,6 +7,12 @@
 - DEBUG=False条件でも動くか確認しながら開発する
 - 使用するstaticファイルは最小限にする
 
+## Environmental Settings
+- OS: Mac Monterey 12.4
+- Python: 3.7.9
+- Virtual Env: venv
+- Production: Heroku
+
 ## 実行
 1. python manage.py makemigrations
 2. python manage.py migrate
@@ -82,6 +88,6 @@ heroku maintenance:on
 ## DEBUG=True時の500severerrorの対応
 - htmlファイルが存在しないstaticファイルを参照しようとしている可能性がある。0からhtmlを構築した方がよい。
 
-## Procfileでデプロイ時に自動でマイグレーションが実行されるように設定しておく
+## Procfile for Auto Migration
 - web: gunicorn myapp.wsgi
 - release: python manage.py migrate
