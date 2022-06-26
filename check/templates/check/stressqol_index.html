@@ -1,0 +1,126 @@
+{% extends 'check/base.html' %} {% block content %}
+<div class="main">
+  <div class="main-question" id="top">
+    <div class="container">
+      <div class="form-container swiper">
+        {% if user.is_authenticated %}
+        <form method="post">
+          <div class="swiper">
+            <h1 class="construct_name">ストレス&QOL</h1>
+            <div class="swiper-wrapper">
+              {% if question_list %} {% for question in question_list %}
+              <div class="question-container swiper-slide">
+                <div class="question-title-container">
+                  <p class="quetion-number">{{ forloop.counter }}</p>
+                  <p class="quetion-title">{{ question.question_text }}</p>
+                </div>
+                {% csrf_token %}
+                <div class="question-choice-container">
+                  <input
+                    class="choice"
+                    type="radio"
+                    name="question_{{question.construct_id.construct_slug}}_{{ question.question_order }}"
+                    id="question_{{question.construct_id.construct_slug}}_{{ question.question_order }}_1"
+                    value="1"
+                    required
+                    onclick="next()"
+                  />
+                    <label
+                      for="question_{{question.construct_id.construct_slug}}_{{ question.question_order }}_1"
+                      class="choice-label"
+                    >
+                      1
+                    </label>
+                  <input
+                    class="choice"
+                    type="radio"
+                    name="question_{{question.construct_id.construct_slug}}_{{ question.question_order }}"
+                    id="question_{{question.construct_id.construct_slug}}_{{ question.question_order }}_2"
+                    value="2"
+                    required
+                    onclick="next()"
+                  />
+                  <label
+                    for="question_{{question.construct_id.construct_slug}}_{{ question.question_order }}_2"
+                    class="choice-label"
+                  >
+                    2
+                  </label>
+                  <input
+                    class="choice"
+                    type="radio"
+                    name="question_{{question.construct_id.construct_slug}}_{{ question.question_order }}"
+                    id="question_{{question.construct_id.construct_slug}}_{{ question.question_order }}_3"
+                    value="3"
+                    required
+                    onclick="next()"
+                  />
+                  <label
+                    for="question_{{question.construct_id.construct_slug}}_{{ question.question_order }}_3"
+                    class="choice-label"
+                  >
+                    3
+                  </label>
+                  <input
+                    class="choice"
+                    type="radio"
+                    name="question_{{question.construct_id.construct_slug}}_{{ question.question_order }}"
+                    id="question_{{question.construct_id.construct_slug}}_{{ question.question_order }}_4"
+                    value="4"
+                    required
+                    onclick="next()"
+                  />
+                  <label
+                    for="question_{{question.construct_id.construct_slug}}_{{ question.question_order }}_4"
+                    class="choice-label"
+                  >
+                    4
+                  </label>
+                  <input
+                    class="choice"
+                    type="radio"
+                    name="question_{{question.construct_id.construct_slug}}_{{ question.question_order }}"
+                    id="question_{{question.construct_id.construct_slug}}_{{ question.question_order }}_5"
+                    value="5"
+                    required
+                    onclick="next()"
+                  />
+                  <label
+                    for="question_{{question.construct_id.construct_slug}}_{{ question.question_order }}_5"
+                    class="choice-label"
+                  >
+                    5
+                  </label>
+                </div>
+                <div class="choice-desc">
+                  <div class="choice-desc-word word-left">全くそう思わない</div>
+                  <div class="choice-desc-word word-center">どちらとも言えない</div>
+                  <div class="choice-desc-word word-right">大変そう思う</div>
+                </div>
+              </div>
+              {% endfor %} {% else %}
+              <p>No questions are available.</p>
+              {% endif %} 
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next" id="next"></div>
+          </div>
+          <div class="submit-wrapper">
+            <input class="submit-button" type="submit" value="結果表示" />
+          </div>
+        </form>
+        {% else %}
+        <p>You are not logged in</p>
+        <p>
+          You can
+          <a href="{% url 'login' %}?next={{ request.path }}">Login</a>
+          if you like.
+        </p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

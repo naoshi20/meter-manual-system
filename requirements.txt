@@ -1,0 +1,11 @@
+asgiref
+django
+django-heroku
+django-environ
+dj-database-url
+gunicorn
+psycopg2
+pytz
+sqlparse
+typing_extensions
+whitenoise
