@@ -3,6 +3,7 @@ db.sqlite3
 staticfiles
 .env
 .venv
+flow-site-meter-env/
 
 # custom untracked files
 .vscode/
