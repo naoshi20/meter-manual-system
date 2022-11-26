@@ -1,14 +1,9 @@
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView
+from .models import ErrorNumber, Question, Solution, Work, WorkDetail
 
-
-class IndexView(TemplateView):
+class IndexView(ListView):
     template_name = 'appName/index.html'
-    
-    def get_context_data(self):
-        ctxt = super().get_context_data()
-        ctxt["username"] = "太郎"
-        return ctxt
-    
+    model = ErrorNumber
 
 class AboutView(TemplateView):
     template_name = "appName/about.html"

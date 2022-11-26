@@ -58,19 +58,6 @@
 - STATICFILES_DIRS: ローカルで使用。css が存在する全てのディレクトリを指定する。{% static %}タグを使った際に見に行く先のフォルダ.collectstatic を実行した際に見に行くフォルダ
 - STATIC_URL: https://static.example.org/filename.extにおける、https://static.example.org 部分の URL.
 
-## git operation
-
-1. git clone
-2. git branch dev
-3. git checkout dev
-4. development
-5. git add, commit
-6. git push origin dev
-7. プルリク作成
-8. マージ
-9. git checkout master
-10. git pull
-
 ## for heroku posgres integration
 
 - heroku run python manage.py createsuperuser --app {{appname}}

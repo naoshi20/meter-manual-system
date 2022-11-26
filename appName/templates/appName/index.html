@@ -3,7 +3,17 @@
 
 {% block content %}
 
-<h1>匿名ユーザーさん、ようこそ！Shunのホームページです。</h1>
-<img src="{% static 'welcome.jpg' %}" />
+<h1>エラー番号を選択してください</h1>
+<ul class="boxes">
+        {% for error_number in object_list %}
+        <div class="box">
+                <li>{{ error_number.error_number }}</li>
+        </div>
+        {% empty %}
+        <div class="box">
+                <li>No error_number yet.</li>
+        </div>
+        {% endfor %}
+</ul>
 
 {% endblock %}
