@@ -7,7 +7,7 @@
 <ul class="boxes">
         {% for error_number in object_list %}
         <div class="box">
-                <li>{{ error_number.error_number }}</li>
+                <li><a href="{% url 'appName:question' error_number %}">{{ error_number.error_number}}</a></li>
         </div>
         {% empty %}
         <div class="box">

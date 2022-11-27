@@ -1,8 +1,4 @@
-# Django Heroku Template
-
-## refference
-
-- [本堂俊輔さんの Youtube](https://www.youtube.com/watch?v=vV_eUbaEH2A)
+# Meter Manual System
 
 ## cautions
 

@@ -2,16 +2,18 @@ from django.db import models
 
 class Solution(models.Model):
         solution_content = models.TextField()
+        error_number = models.IntegerField(default=1)
 
         def __str__(self):
                 return self.solution_content
 
 class Question(models.Model):
+        error_number = models.IntegerField(default=1)
         question_text = models.TextField()
-        next_question_when_yes = models.IntegerField(blank=True, null=True)
-        next_question_when_no = models.IntegerField(blank=True, null=True)
-        solution_when_yes = models.IntegerField(blank=True, null=True)
-        solution_when_no = models.IntegerField(blank=True, null=True)
+        next_question_when_yes = models.IntegerField(default=-1)
+        next_question_when_no = models.IntegerField(default=-1)
+        solution_when_yes = models.IntegerField(default=-1)
+        solution_when_no = models.IntegerField(default=-1)
 
         def __str__(self):
                 return self.question_text
