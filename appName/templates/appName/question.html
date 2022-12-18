@@ -1,84 +1,31 @@
-{% extends 'appName/base.html' %}
-{% load static %}
+{% extends 'appName/base.html' %} {% load static %} {% block content %}
 
-{% block content %}
-
-<!-- <h1>{{ question.question_text }}</h1> -->
 <ul class="boxes">
         <p></p>
 </ul>
 <form action="" method="post">
-        {% csrf_token %}
-        {% for question in questions %}
+        {% csrf_token %} {% for question in questions %}
         <div id="question_{{ question.id }}" class="questionBox">
                 <p>{{ question.question_text }}</p>
                 <input type="radio" class="radioButton" name="{{ question.id }}" id="{{ question.id }}_yes" value="yes"
                         required data-nextquestion="{{ question.next_question_when_yes }}"
                         data-nextsolution="{{ question.solution_when_yes }}" />
-                <label for="{{ question.id }}">
-                        yes
-                </label>
+                <label for="{{ question.id }}"> yes </label>
                 <input type="radio" class="radioButton" name="{{ question.id }}" id="{{ question.id }}_no" value="no"
                         required data-nextquestion="{{ question.next_question_when_no }}"
                         data-nextsolution="{{ question.solution_when_no }}" />
-                <label for="{{ question.id }}">
-                        no
-                </label>
+                <label for="{{ question.id }}"> no </label>
         </div>
-        {% endfor %}
-        {% for solution in solutions %}
-        <div id="solution_{{ solution.id }}" class="solutionBox">
+        {% endfor %} {% for solution in solutions %}
+        <div id="solution_{{ solution.id }}" class="solutionBox" data-solutionname="{{ solution.solution_content }}">
                 <p>{{ solution.solution_content }}</p>
         </div>
         {% endfor %}
         <button class="sendButton">回答</button>
 </form>
+<div id="history_box">
+</div>
 
-<script>
-        let questions = document.getElementsByClassName('questionBox')
-        console.log(questions)
-        for (let i = 1; i < questions.length; i++) {
-                questions[i].classList.add("inactive");
-        }
-
-        let solutions = document.getElementsByClassName('solutionBox')
-        console.log(solutions)
-        for (let i = 0; i < solutions.length; i++) {
-                solutions[i].classList.add("inactive");
-        }
-
-        let sendButton = document.getElementsByClassName('sendButton')[0]
-        sendButton.classList.add("inactive");
-
-        let works = {};
-        const valueChange = (event) => {
-                console.log('質問' + event.currentTarget.name + 'の回答は' + event.currentTarget.value + 'です');
-                works[event.currentTarget.name] = event.currentTarget.value;
-                console.log(works)
-                console.log('NextQuestion: ' + event.currentTarget.dataset.nextquestion)
-                console.log('NextSolution: ' + event.currentTarget.dataset.nextsolution)
-                let currentQuestion = document.getElementById('question_' + event.currentTarget.name)
-                currentQuestion.classList.add("inactive");
-                if (event.currentTarget.dataset.nextquestion != -1 && event.currentTarget.dataset.nextsolution == -1) {
-                        let nextQuestion = document.getElementById('question_' + event.currentTarget.dataset.nextquestion)
-                        nextQuestion.classList.remove("inactive");
-                } else if (event.currentTarget.dataset.nextquestion == -1 && event.currentTarget.dataset.nextsolution != -1) {
-                        let nextSolution = document.getElementById('solution_' + event.currentTarget.dataset.nextsolution)
-                        nextSolution.classList.remove("inactive");
-                        works["solution"] = event.currentTarget.dataset.nextsolution;
-                        console.log(works)
-                        sendButton.classList.remove("inactive");
-                } else {
-                        console.log("データが正しく登録されていない可能性があります。")
-                }
-        }
-
-        const radioButtons = document.getElementsByClassName('radioButton')
-        console.log(radioButtons)
-        for (let i = 0; i < radioButtons.length; i++) {
-                console.log(i)
-                radioButtons[i].addEventListener('change', valueChange, true);
-        }
-</script>
+<script type="text/javascript" src="{% static 'js/question.js' %}"></script>
 
 {% endblock %}
